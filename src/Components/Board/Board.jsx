@@ -1,5 +1,6 @@
 import React from "react";
 import { Square } from "../Square/Square";
+import './board.css'
 
 export class Board extends React.Component{
     constructor(props){
@@ -9,7 +10,15 @@ export class Board extends React.Component{
         }
     }
     renderSquare(i){
-        return <Square value={this.state.squares[i]}/>
+        return <Square 
+        value={this.state.squares[i]}
+        onClick={()=>{this.handleClick(i)}}
+        />
+    }
+    handleClick(i){
+        const squares=this.state.squares.slice();
+        squares[i]='X';
+        this.setState({squares:squares})
     }
     render() {
         const status = 'Next player: X';
